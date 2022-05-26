@@ -1,0 +1,55 @@
+{
+  "name": "Chrome Extension Example",
+  "manifest_version": 3,
+  "version": "0.009",
+  "description": "This is some test extension",
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage"
+  ],
+  "options_page": "./src/options.html",
+  "action": {
+    "default_title": "Just click me",
+    "default_popup": "./src/popup.html"
+  },
+  "background": {
+    "service_worker": "./src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": ["./src/chat.css"],
+      "js": ["./src/contentScripts.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/inject.js"],
+      "matches": ["*://*/*"],
+      "extension_ids": []
+    }
+  ],
+  "icons": {
+    "16": "./src/assets/16.png",
+    "32": "./src/assets/32.png",
+    "48": "./src/assets/48.png",
+    "128": "./src/assets/128.png"
+  },
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens hello.html"
+    }
+  }
+}
+
+
+
